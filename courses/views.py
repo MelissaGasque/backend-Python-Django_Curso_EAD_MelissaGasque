@@ -1,5 +1,6 @@
 from rest_framework.generics import ListCreateAPIView
-from rest_framework.generics import RetrieveUpdateDestroyAPIView, RetrieveUpdateAPIView
+from rest_framework.generics import RetrieveUpdateDestroyAPIView
+from rest_framework.generics import RetrieveUpdateAPIView
 from courses.models import Course
 from .serializers import CourseSerializer, CourseStudentSerializer
 from accounts.permission import IsSuperUser, IsSuperUserOrAuthenticated

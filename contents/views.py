@@ -32,7 +32,7 @@ class ContentCourse(RetrieveUpdateDestroyAPIView):
     def get_object(self):
         course_id = self.kwargs.get("course_id")
         content_id = self.kwargs.get("content_id")
-    
+
         try:
             course = Course.objects.get(id=course_id)
         except Course.DoesNotExist:
@@ -49,6 +49,6 @@ class ContentCourse(RetrieveUpdateDestroyAPIView):
             raise NotFound({'detail': 'content not found.'})
 
         return content
-     
+
     def get_queryset(self):
         return Content.objects.filter(id=self.kwargs.get(self.lookup_url_kwarg))

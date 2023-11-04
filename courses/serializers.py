@@ -31,19 +31,20 @@ class CourseStudentSerializer(serializers.ModelSerializer):
         extra_kwargs = {"name": {"read_only": True}}
 
     def update(self, instance, validated_data):
-        list_students = []
-        list_emails = []
+        students_found = []
+        emails_not_found = []
 
         for student in validated_data["students_courses"]:
             estudante = student["student"]
-            estudante_encontrado = Account.objects.filter(email=estudante["email"]).first()
-            if estudante_encontrado:
-                list_students.append(estudante_encontrado)
+            estudante_verificado = Account.objects.filter(email=estudante["email"]).first()
+            if estudante_verificado:
+                students_found.append(estudante_verificado)
             else:
-                list_emails.append(estudante["email"])
-        if list_emails:
-            raise serializers.ValidationError({"detail": f"No active accounts was found: {', '.join(list_emails)}."})
-        if not self.partial:
-            instance.students.add(*list_students)
+                emails_not_found.append(estudante["email"])
+
+        if students_found:
+            instance.students.add(*students_found)
             return instance
-        return super().update(instance, validated_data)
+        else:
+            error_message = f"No active accounts was found: {', '.join(emails_not_found)}."
+            raise serializers.ValidationError({"detail": error_message})
