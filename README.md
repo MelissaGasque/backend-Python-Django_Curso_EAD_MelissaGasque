@@ -1,8 +1,7 @@
 #   Gerenciamento de cursos e aulas de uma escola de modalidade EAD
 
-A linguagem utilizada foi Python e o framework Django, juntamente com o Django Rest Framework;
+A linguagem utilizada foi Python e o framework Django, juntamente com o Django Rest Framework;  
 A API foi criada utilizando o Banco de Dados Postgres
-<img src="/DER/DER.png">
 
 | Método HTTP | Caminho                                   | Responsabilidade                               | Permissão                                                               |
 |-------------|-------------------------------------------|-------------------------------------------------|-------------------------------------------------------------------------|
@@ -22,20 +21,22 @@ A API foi criada utilizando o Banco de Dados Postgres
 | GET         | /api/docs/                                | Visualização da documentação no formato Swagger ou Redoc | Acesso livre                                                     |
 
 ## Configuração do Ambiente Virtual (Opcional, mas recomendado)
-### Instale o virtualenv, caso ainda não tenha
-pip install virtualenv
-
 ### Crie um ambiente virtual
-python -m venv venv
+```python -m venv venv```
 
 ### Ative o ambiente virtual
 #### No Windows
-venv\Scripts\activate
+```venv\Scripts\activate```
 #### No Linux/Mac
-source venv/bin/activate
+```source venv/bin/activate```
+
+
+## Instalar o Django:
+```pip install django```
 
 ## Instalação das Dependencias
-pip install -r requirements.txt
+```pip install -r requirements.txt```
+
 
 ## Configuração do banco de dados:
 1. Crie um banco de dados PostgreSQL.
@@ -43,10 +44,11 @@ pip install -r requirements.txt
 
 ## Migrações e Aplicações
 ### Execute as migrações
-python manage.py migrate
+```python manage.py makemigrations```
+```python manage.py migrate```
 
 ### Inicie o servidor de desenvolvimento
-python manage.py runserver
+```python manage.py runserver```
 
 
 
