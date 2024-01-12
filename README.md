@@ -1,4 +1,55 @@
-# M5 - Projeto Final Kanvas
+#   Gerenciamento de cursos e aulas de uma escola de modalidade EAD
+
+A linguagem utilizada foi Python e o framework Django, juntamente com o Django Rest Framework;
+A API foi criada utilizando o Banco de Dados Postgres
+<img src="/DER/DER.png">
+
+| Método HTTP | Caminho                                   | Responsabilidade                               | Permissão                                                               |
+|-------------|-------------------------------------------|-------------------------------------------------|-------------------------------------------------------------------------|
+| POST        | /api/accounts/                            | Criação de usuário                             | Livre                                                                   |
+| POST        | /api/login/                               | Login do usuário                               | Livre                                                                   |
+| POST        | /api/courses/                             | Criação de cursos                              | Somente super usuários                                                  |
+| GET         | /api/courses/                             | Listagem de cursos                             | Somente usuários autenticados                                           |
+| GET         | /api/courses/<course_id>/                 | Busca de curso por id                          | Acesso livre à administradores. Estudantes não podem acessar cursos que não participam |
+| PATCH       | /api/courses/<course_id>/                 | Atualização somente dos dados de curso         | Somente super usuários                                                  |
+| DELETE      | /api/courses/<course_id>/                 | Deleção de curso                               | Somente super usuários                                                  |
+| POST        | /api/courses/<course_id>/contents/        | Criação de conteúdos e associação ao curso    | Somente super usuários                                                  |
+| GET         | /api/courses/<course_id>/contents/<content_id>/ | Busca de conteúdo por id               | Super usuários têm acesso livre. Estudantes só podem acessar dos que participam |
+| PATCH       | /api/courses/<course_id>/contents/<content_id>/| Atualização somente do conteúdo          | Somente super usuários                                                  |
+| DELETE      | /api/courses/<course_id>/contents/<content_id>/| Deleção de conteúdos                    | Somente super usuários                                                  |
+| PUT         | /api/courses/<course_id>/students/        | Adição de alunos ao curso                      | Somente super usuários                                                  |
+| GET         | /api/courses/<course_id>/students/        | Listagem dos estudantes do curso               | Somente super usuários                                                  |
+| GET         | /api/docs/                                | Visualização da documentação no formato Swagger ou Redoc | Acesso livre                                                     |
+
+## Configuração do Ambiente Virtual (Opcional, mas recomendado)
+### Instale o virtualenv, caso ainda não tenha
+pip install virtualenv
+
+### Crie um ambiente virtual
+python -m venv venv
+
+### Ative o ambiente virtual
+#### No Windows
+venv\Scripts\activate
+#### No Linux/Mac
+source venv/bin/activate
+
+## Instalação das Dependencias
+pip install -r requirements.txt
+
+## Configuração do banco de dados:
+1. Crie um banco de dados PostgreSQL.
+2. Copie o arquivo .env.example para .env e configure as variáveis de ambiente relacionadas ao banco de dados.
+
+## Migrações e Aplicações
+### Execute as migrações
+python manage.py migrate
+
+### Inicie o servidor de desenvolvimento
+python manage.py runserver
+
+
+
 
 ## Preparando ambiente para execução dos testes
 
